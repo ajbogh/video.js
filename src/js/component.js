@@ -713,3 +713,20 @@ vjs.Component.prototype.emitTapEvents = function(){
     }
   });
 };
+
+/**
+ * Adds a class to a component
+ * @param {string} className - the class to add
+ */
+vjs.Component.prototype.addClass = function(className){
+  this.removeClass(className); //cleanup existing classes
+  this.className = this.className + ( this.className ? " "+className : className );
+};
+/**
+ * Removes a class from a component.
+ * @param {string} className - the class to remove
+ */
+vjs.Component.prototype.removeClass = function(className){
+  var regex = new RegExp("\bclassName\b", "g");
+  this.className = this.className.replace(regex,'');
+};
